@@ -6,7 +6,7 @@
 struct Derived: Base {
   int y;
   Derived () {
-    m["y"] = &(this->y);
+    setter.add ( "y", &(this->y) );
   };
 };
 

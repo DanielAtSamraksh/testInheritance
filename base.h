@@ -13,13 +13,13 @@ using std::cout;
 #include <map>
 using std::map;
 
-struct Base {
-  int x;
+struct Setter {
   map < string, int* > m;
-  
-  Base () {
-    m["x"] = &(this->x);
+
+  void add ( string k, int* ptr ) {
+    m[k] = ptr;
   };
+  
   void set ( string k, char* v ) {
     if ( m.find ( k ) == m.end() ) {
       cout << "Key " << k << " is not found!\n";
@@ -28,18 +28,25 @@ struct Base {
     stringstream ss;
     ss << v;
     ss >> *(m[k]);
-    cout << "setting to " << *(m[k]) << "\n";
-    cout << "ss.bad() = " << ss.bad() << "\n";
-    cout << "\n";
-  };
-  void oldset ( int *i, char* v ) {
-    stringstream ss;
-    ss << v;
-    ss >> *(i);
-    cout << "setting to " << *i << "\n";
+    cout << "setting " << k << " to " << *(m[k]) << "\n";
     cout << "ss.bad() = " << ss.bad() << "\n";
     cout << "\n";
   };
 };
+
+struct Base {
+  int x;
+  Setter setter;
+
+  void set ( string k, char *v ) {
+    return this->setter.set ( k, v );
+  };
+  
+  Base () {
+    setter.add("x", &(this->x));
+  };
+
+};
+
 
 #endif // _BASE_H
