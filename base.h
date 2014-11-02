@@ -1,0 +1,5 @@
+
+
+struct Base {
+  int x;
+};
