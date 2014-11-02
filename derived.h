@@ -5,6 +5,9 @@
 
 struct Derived: Base {
   int y;
+  Derived () {
+    m["y"] = &(this->y);
+  };
 };
 
 #endif // _DERIVED_H
