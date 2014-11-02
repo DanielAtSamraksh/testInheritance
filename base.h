@@ -4,6 +4,8 @@
 #include <string> 
 #include <sstream> 
 using std::stringstream;
+#include <iostream> 
+using std::cout;
 
 struct Base {
   int x;
@@ -13,6 +15,9 @@ struct Base {
     stringstream ss;
     ss << v;
     ss >> *(i);
+    cout << "setting to " << *i << "\n";
+    cout << "ss.bad() = " << ss.bad() << "\n";
+    cout << "\n";
   };
 };
 
